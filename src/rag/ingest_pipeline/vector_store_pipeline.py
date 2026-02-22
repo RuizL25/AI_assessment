@@ -1,15 +1,15 @@
 """
-FAISS vector store service.
+Vector store pipeline wrapper.
 
 Manages the creation, persistence, and retrieval of documents
-using FAISS as the vector store and Cohere for embeddings.
+using the configured vector store service (Chroma).
 """
 
 from typing import List, Sequence
 
 from langchain_core.documents import Document
 from langchain_core.vectorstores import VectorStoreRetriever
-from langchain_community.vectorstores import FAISS
+
 from rag.services.vector_store_service import create_vector_store
 from utils.config import settings
 
@@ -20,10 +20,7 @@ def vector_store(
     vector_store_path: str | None = None,
     top_k: int | None = None,
 ) -> VectorStoreRetriever:
-    """Creates a FAISS vector store from chunks and returns a retriever.
-
-    Generates embeddings for the chunks using Cohere, builds a FAISS index,
-    persists it to disk, and configures a similarity retriever.
+    """Creates a vector store from chunks and returns a retriever.
 
     Args:
         texts: List of texts to index.

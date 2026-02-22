@@ -1,7 +1,6 @@
 import json
 import os
 from typing import List
-from langchain_core.documents import Document
 from utils.config import settings
 
 def save_chunks_descriptions(new_chunks: List[str], file_name: str) -> str:

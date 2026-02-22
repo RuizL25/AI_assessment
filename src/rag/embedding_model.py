@@ -1,10 +1,11 @@
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Any
 from langchain_openai import OpenAIEmbeddings
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from utils.config import settings
 
 class BaseEmbeddingAdapter(ABC):
+    client: Any
     @abstractmethod
     def embed_documents(self, texts: List[str]) -> List[List[float]]:
         pass
