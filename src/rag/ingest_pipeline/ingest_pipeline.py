@@ -5,17 +5,13 @@ Extracts text from scanned PDFs using Google's Gemini model
 for OCR via computer vision (multimodal).
 """
 
-import io
 import base64
-from typing import List, Optional
+
 
 import fitz
-from PIL import Image
-from langchain_core.documents import Document
 from langchain_core.messages import HumanMessage
 from rag.multimodal_model import ocr_client
 from rag.prompts import PROMPT_IMAGES_TO_TEXT
-from rag.services.save_md_doc import save_md_doc
 
 from utils.config import settings
 

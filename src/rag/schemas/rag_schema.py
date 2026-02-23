@@ -13,10 +13,9 @@ class IngestRequest(BaseModel):
 
     Attributes:
         ruta_pdf: Absolute or relative path to the PDF file to process.
-        estrategia: Ingestion method to use ('native', 'local', 'google').
     """
 
-    ruta_pdf: str = Field(..., description="Ruta al archivo PDF a procesar")
+    ruta_pdf: str = Field(..., description="Route to the PDF file to processs")
 
 
 class DocumentChunk(BaseModel):

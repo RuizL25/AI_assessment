@@ -6,9 +6,9 @@ PDF Reading (OCR) -> Segmentation -> Chunk Descriptions -> Embeddings -> Vector 
 """
 
 import os
-from typing import Dict, Any, Sequence, List
+from typing import List
 from langchain_core.documents import Document
-
+from langsmith import traceable
 from rag.schemas.rag_schema import RAGPipelineResult
 from utils.config import settings
 
@@ -31,6 +31,7 @@ class RAGIngestionPipeline:
     def __init__(self):
         self.ingestor = GoogleVisionIngestor()
 
+    @traceable(name="ingestion_pipeline")
     def run_ingestion_pipeline(self, pdf_path: str, file_name: str) -> RAGPipelineResult:
         """Runs the entire ingestion pipeline sequentially.
 

@@ -7,7 +7,7 @@ using Chroma as the vector store.
 import os
 from typing import List, Optional, Sequence
 from langchain_core.vectorstores import VectorStoreRetriever
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 
 from rag.embedding_model import embedding_client
 from utils.config import settings
@@ -27,9 +27,6 @@ def create_vector_store(
     top_k = top_k or settings.top_k
 
     try:
-        # We use the embedding adapter's inner client for LangChain compatibility
-        # embedding_client.client gives us the actual LangChain Embeddings object 
-        # (e.g., OpenAIEmbeddings or GoogleGenerativeAIEmbeddings)
         vector_store = Chroma.from_texts(
             texts=list(texts),
             embedding=embedding_client.client,

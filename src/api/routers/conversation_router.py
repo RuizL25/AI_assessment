@@ -1,30 +1,13 @@
 from fastapi import APIRouter, HTTPException
-from rag.services.vector_store_service import load_vector_store_retriever
-from api.schemas.conversation_schema import SearchRequest, SearchResponse, SourceInfo
+from api.schemas.conversation_schema import ChatRequest, ChatResponse
+from agent.chat_agent import agent_executor
 
-router = APIRouter()
+router = APIRouter(prefix="/api/v1", tags=["Conversation"])
 
-@router.post("/search", response_model=SearchResponse)
-def search(payload: SearchRequest):
-    
-    request = payload
-
-    retriever = load_vector_store_retriever()
-
+@router.post("/conversation", response_model=ChatResponse)
+def chat_endpoint(query: ChatRequest):
     try:
-        retrieved_docs = retriever.invoke(request.query)
+        result = agent_executor.invoke({"input": query.query, "chat_history": []})
+        return ChatResponse(answer=result["output"])
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
-    sources = []    
-
-    for doc in retrieved_docs:
-        sources.append(
-            SourceInfo(
-                source=doc.metadata.get("source", "unknown"),
-                page=doc.metadata.get("page", 0),
-                content=doc.page_content,
-            )
-        )
-
-    return SearchResponse(query=request.query, answer="", sources=sources)
