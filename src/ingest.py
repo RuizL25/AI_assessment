@@ -31,7 +31,6 @@ def main():
         print("\n--- Ingestion Results ---")
         print(f"Characters extracted: {result.total_length}")
         print(f"Chunks generated: {result.total_chunks}")
-        print(f"Descriptions generated: {result.total_descriptions}")
         print(f"Embeddings generated: {result.total_embeddings}")
         print(f"Vector Store (Chroma) ready: {result.retriever_ready}")
         print("-------------------------")

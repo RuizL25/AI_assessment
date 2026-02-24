@@ -9,7 +9,7 @@ services:
       - ./data:/app/data
     env_file:
       - .env
-    command: python run_api.py
+    command: python src/run_api.py
 
   chat:
     build:
@@ -21,4 +21,4 @@ services:
       - .env
     stdin_open: true
     tty: true
-    command: python chat.py
+    command: python src/chat.py

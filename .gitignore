@@ -3,4 +3,5 @@
 __pycache__
 .vscode
 .DS_STORE
+examples.txt
 data/

@@ -12,11 +12,11 @@ from langchain_core.documents import Document
 from rag.services.embeddings_service import embed_documents
 
 
-def embed_documents_pipeline(chunks_descriptions: List[str]) -> List[List[float]]:
+def embed_documents_pipeline(chunks: List[str]) -> List[List[float]]:
     """Calls the embeddings service to generate embeddings for a list of documents.
 
     Args:
-        chunks_descriptions : List of the chunks descriptions to vectorize.
+        chunks : List of the chunks to vectorize.
 
     Returns:
         List of embedding vectors (one per document).
@@ -25,11 +25,11 @@ def embed_documents_pipeline(chunks_descriptions: List[str]) -> List[List[float]
         ValueError: If the list of documents is empty.
         RuntimeError: If the embedding generation fails.
     """
-    if not chunks_descriptions:
+    if not chunks:
         raise ValueError("The list of documents is empty.")
 
     try:
-        embeddings = embed_documents(chunks_descriptions)
+        embeddings = embed_documents(chunks)
 
         return embeddings
     except Exception as e:

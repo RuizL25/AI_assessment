@@ -32,7 +32,7 @@ class Settings(BaseSettings):
     vector_store_path: str = "./data/vector_store"
     output_dir: str = "./data/output_ingest"
     
-    top_k: int = 5
+    top_k: int = 10
     
     google_genai_model_name: str = "gemini-2.5-flash"
     openAI_generation_model_name : str = "gpt-4.1-mini"

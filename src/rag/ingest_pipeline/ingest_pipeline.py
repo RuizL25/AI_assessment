@@ -11,9 +11,7 @@ import base64
 import fitz
 from langchain_core.messages import HumanMessage
 from rag.multimodal_model import ocr_client
-from rag.prompts import PROMPT_IMAGES_TO_TEXT
-
-from utils.config import settings
+from prompts.image_to_text_prompt import PROMPT_IMAGES_TO_TEXT
 
 
 class GoogleVisionIngestor():

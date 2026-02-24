@@ -45,7 +45,6 @@ class RAGPipelineResult(BaseModel):
 
     total_length: int = Field(..., description="Number of documents extracted")
     total_chunks: int = Field(..., description="Number of chunks generated")
-    total_descriptions: int = Field(..., description="Number of descriptions generated")
     total_embeddings: int = Field(..., description="Number of embeddings generated")
     retriever_ready: bool = Field(
         ..., description="Indicates if the retriever was created"

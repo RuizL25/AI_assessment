@@ -3,7 +3,7 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langsmith import traceable
 from rag.generation_model import llm_client
 from agent.tools import query_knowledge_base
-from agent.prompts import AGENT_SYSTEM_PROMPT
+from prompts.agent_prompt import AGENT_SYSTEM_PROMPT
 
 @traceable(name="get_conversational_agent")
 def get_conversational_agent() -> AgentExecutor:

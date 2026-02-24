@@ -7,8 +7,9 @@ of documents using the embedding factory singleton.
 
 from typing import List
 from rag.embedding_model import embedding_client
+from langsmith import traceable
 
-
+@traceable(name="embed_documents")
 def embed_documents(documents: List[str]) -> List[List[float]]:
     """Generates embeddings for a list of documents.
 

@@ -1,4 +1,4 @@
-# RAG Support Agent
+# Support Agent
 
 A document-based conversational support agent using a Retrieval-Augmented Generation (RAG) architecture. It processes PDF documents into a vector database and provides a chat API to query them.
 
@@ -29,9 +29,20 @@ A document-based conversational support agent using a Retrieval-Augmented Genera
    Using the Series 76 PDF file, you need to run the ingestion script via Docker:
    ```bash
    docker build -t rag-agent .
-   docker run --rm -v $(pwd)/data:/app/data --env-file .env rag-agent python ingest.py --pdf data/input_ingest/series_76_tables.pdf
+   docker run --rm -v $(pwd)/data:/app/data --env-file .env rag-agent python src/ingest.py --pdf data/input_ingest/series_76_tables.pdf
    ```
-   This processes the PDF using Google Gemini Multimodal OCR, chunks the text, creates embeddings using OpenAI, and stores them in a local Chroma vector database inside the `data/vector_store` directory.
+   This processes the PDF using Google Gemini Multimodal OCR, chunks the text, creates embeddings using OpenAI, and stores them in a local Chroma vector database inside the `data/vector_store` directory. This step is needed only when you add a new PDF to the knowledge base.
+
+   The process finish when a similar message to the following is displayed:
+   
+   ```
+   --- Ingestion Results ---
+   Characters extracted: 14928
+   Chunks generated: 17
+   Embeddings generated: 17
+   Vector Store (Chroma) ready: True
+   -------------------------
+   ```
 
 ## How to Run the Application
 
