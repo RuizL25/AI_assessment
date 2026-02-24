@@ -96,8 +96,8 @@ curl -X 'POST' \
 
 ## Design Choices & Architecture
 
-- **Ingestion Pipeline (Facade Pattern):** We use a sequential script (`ingest.py`) that uses `RAGIngestionPipeline` to process PDFs. It uses Google Gemini as an OCR engine to extract structured Markdown text from scanned or complex PDFs.
-- **Vector Database:** We chose **ChromaDB** for storing embeddings locally. It is lightweight, file-based, and integrates perfectly with LangChain.
+- **Ingestion Pipeline (Facade Pattern):** I used a sequential script (`ingest.py`) that uses `RAGIngestionPipeline` to process PDFs. It uses Google Gemini as an OCR engine to extract structured Markdown text from scanned or complex PDFs.
+- **Vector Database:** I chose **ChromaDB** for storing embeddings locally. It is lightweight, file-based, and integrates perfectly with LangChain.
 - **Agent Architecture:** The conversation API is powered by a LangChain `AgentExecutor` using the `create_tool_calling_agent` pattern. The agent is provided with a single tool (`query_knowledge_base`) that wraps the ChromaDB retriever. This allows the LLM to autonomously decide when and what to search in the knowledge base.
 - **Singletons & Adapters:** LLM models and embedding clients are initialized as singletons (`rag.generation_model.llm_client`, `rag.multimodal_model.ocr_client`, etc.) to prevent memory leaks and reduce latency. An adapter pattern is used for embeddings, allowing easy swapping between OpenAI and Google embeddings via the configuration.
 - **Langsmith integration:** I decided to integrate LangSmith to enable full prompt traceability, monitor token consumption in real time, and bring a higher level of technical maturity to the project.
